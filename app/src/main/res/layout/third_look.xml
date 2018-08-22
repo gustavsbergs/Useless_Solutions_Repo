@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_green_light">
+
+    <Button
+        android:id="@+id/back1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="19dp"
+        android:text="Back" />
+
+    <EditText
+        android:id="@+id/enterMorse"
+        android:layout_width="265dp"
+        android:layout_height="124dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="41dp"
+        android:ems="10"
+        android:inputType="textPersonName|textMultiLine"
+
+        android:text="Enter your morse code here" />
+
+    <EditText
+        android:id="@+id/getTranslation"
+        android:layout_width="257dp"
+        android:layout_height="115dp"
+        android:layout_above="@+id/back1"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:gravity="top"
+        android:inputType="textPersonName"
+        android:text="Translation" />
+
+    <Button
+        android:id="@+id/dot"
+        android:layout_width="102dp"
+        android:layout_height="37dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="203dp"
+        android:text="." />
+
+    <Button
+        android:id="@+id/line"
+        android:layout_width="102dp"
+        android:layout_height="37dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/dot"
+        android:layout_marginTop="251dp"
+        android:text="-" />
+
+    <Button
+        android:id="@+id/space"
+        android:layout_width="102dp"
+        android:layout_height="37dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/dot"
+        android:layout_marginBottom="229dp"
+        android:text="space" />
+
+    <Button
+        android:id="@+id/translateToText"
+        android:layout_width="125dp"
+        android:layout_height="89dp"
+        android:layout_alignEnd="@+id/enterMorse"
+        android:layout_alignTop="@+id/dot"
+        android:text="Translate" />
+
+</RelativeLayout>
