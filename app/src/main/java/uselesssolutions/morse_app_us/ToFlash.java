@@ -2,6 +2,7 @@ package uselesssolutions.morse_app_us;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
@@ -21,13 +22,21 @@ public class ToFlash extends AppCompatActivity {
     private Button flashEnable;
     private static final int CAMERA_REQUEST = 50;
     private boolean flashLightStatus = false;
-
+    private Button back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toflash);
         flashEnable = (Button) findViewById(R.id.button_on_off);
         cameraEnable = (Button) findViewById(R.id.buttonCameraEnable);
+        back = (Button) findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                backToMain();
+            }
+        });
 
         final boolean hasCameraFlash = getPackageManager().
                 hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
@@ -96,4 +105,9 @@ public class ToFlash extends AppCompatActivity {
                 break;
         }
     }
+    public void backToMain(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
 }
