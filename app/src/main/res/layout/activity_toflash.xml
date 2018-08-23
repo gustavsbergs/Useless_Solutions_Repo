@@ -20,7 +20,7 @@
 
 
     <EditText
-        android:id="@+id/enterText"
+        android:id="@+id/enterText1"
         android:layout_width="265dp"
         android:layout_height="124dp"
         android:layout_alignParentTop="true"
