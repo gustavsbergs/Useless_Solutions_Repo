@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Morse_App_US.iml" filepath="$PROJECT_DIR$/Morse_App_US.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Useless_Solutions_Repo-test.iml" filepath="$PROJECT_DIR$/Useless_Solutions_Repo-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
