@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="uselesssolutions.morse_app_us">
-
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.flash" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,6 +23,7 @@
         <activity android:name=".SecondLook" />
         <activity android:name=".ThirdLook" />
         <activity android:name=".AboutMorse"></activity>
+        <activity android:name=".ToFlash"></activity>
     </application>
 
 </manifest>
