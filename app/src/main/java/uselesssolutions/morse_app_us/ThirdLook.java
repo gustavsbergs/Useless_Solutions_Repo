@@ -6,14 +6,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class ThirdLook extends AppCompatActivity {
 
     private Button back1;
-    private EditText editText1;
-    private Button dot;
-    private Button line;
-    private Button space;
+    // NIKLAVS ADDED THIS:
+    String morseForMethod = "";
+    private Button wordSpaceBtn;
+    private Button letterSpaceBtn;
+    private Button deleteBtn;
+    private Button longBtn;
+    private Button shortBtn;
+    private Button convertBtn;
+    private TextView morseText;
+    private TextView letterText;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,15 +35,114 @@ public class ThirdLook extends AppCompatActivity {
                 backToMain();
             }
         });
-        editText1 = (EditText) findViewById(R.id.enterMorse);
-        editText1.setOnClickListener(new View.OnClickListener() {
+
+        // NIKLAVS ADDED THIS:
+        morseText = findViewById(R.id.morseCode);
+        letterText = findViewById(R.id.textView2);
+
+        wordSpaceBtn = findViewById(R.id.wordSpaceBtn);
+        wordSpaceBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editText1.getText().clear();
+                if (morseForMethod.length() > 0){
+                    if (morseForMethod.charAt(morseForMethod.length() - 1) != '/') {
+                        morseForMethod = morseForMethod + "/%/";
+                    }else{
+                        morseForMethod = morseForMethod + "%/";
+                    }
+                    morseText.setText(makeDisplayString(morseForMethod));
+                }
+            }
+        });
 
+        letterSpaceBtn = findViewById(R.id.letterSpaceBtn);
+        letterSpaceBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (morseForMethod.length() > 0) {
+                    morseForMethod = morseForMethod + "/";
+                    morseText.setText(makeDisplayString(morseForMethod));
+                }
+            }
+        });
+
+        deleteBtn = findViewById(R.id.deleteButton);
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                morseForMethod = deleteForMethod(morseForMethod);
+                morseText.setText(makeDisplayString(morseForMethod));
+            }
+        });
+        deleteBtn.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                morseText.setText("");
+                letterText.setText("");
+                morseForMethod = "";
+                return false;
+            }
+        });
+
+        longBtn = findViewById(R.id.longButton);
+        longBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                morseForMethod = morseForMethod + "-";
+                morseText.setText(makeDisplayString(morseForMethod));
+            }
+        });
+
+        shortBtn = findViewById(R.id.shortButton);
+        shortBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                morseForMethod = morseForMethod + ".";
+                morseText.setText(makeDisplayString(morseForMethod));
+            }
+        });
+
+        convertBtn = findViewById(R.id.convertButton);
+        convertBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MorseTextClass summon = new MorseTextClass();
+                if(morseForMethod.length() > 0) {
+                    if (morseForMethod.charAt(morseForMethod.length()-1) != '/'){
+                        morseForMethod = morseForMethod + "/";
+                    }
+                    morseText.setText(makeDisplayString(morseForMethod));
+                    letterText.setText(summon.morseToText(morseForMethod));
+                }
             }
         });
     }
+
+    public String deleteForMethod(String str){
+        if (str != null && str.length() > 0){
+            str = str.substring(0, str.length() - 1);
+        }
+        return str;
+    }
+
+    public String makeDisplayString(String str){
+        String result = "";
+        for (int i = 0; i < str.length(); i++){
+            if (str.charAt(i) == '.'){
+                result += " . ";
+            }else if (str.charAt(i) == '-'){
+                result += " _ ";
+            }else if (str.charAt(i) == '/'){
+                result += "/";
+            }else if (str.charAt(i) == '%'){
+                result += "       ";
+            }else{
+                result += "?";
+            }
+        }
+        return result;
+    }
+
     public void backToMain(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
