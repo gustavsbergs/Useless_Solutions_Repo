@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         textToMorse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                secondLook();
+                toFlashLook();
             }
         });
         morseToText = (Button) findViewById(R.id.morseToText);
@@ -37,14 +37,14 @@ public class MainActivity extends AppCompatActivity {
                 aboutMorseCode();
             }
         });
-        //TO FLASH!!
-        moreToFlash = (Button) findViewById(R.id.moreToFlash);
-        moreToFlash.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                toFlashLook();
-            }
-        });
+        //TO FLASH!! delete later
+//        moreToFlash = (Button) findViewById(R.id.moreToFlash);
+//        moreToFlash.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                toFlashLook();
+//            }
+//        });
     }
 
     public void secondLook(){

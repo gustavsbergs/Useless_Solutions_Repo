@@ -29,6 +29,7 @@ public class ToFlash extends AppCompatActivity {
     private EditText editText;
     private String textToConv;
     private TextView translation;
+    private Button btnToMorse;
 
     @Override
 
@@ -37,7 +38,10 @@ public class ToFlash extends AppCompatActivity {
         setContentView(R.layout.activity_toflash);
         flashEnable = (Button) findViewById(R.id.button_on_off);
         cameraEnable = (Button) findViewById(R.id.buttonCameraEnable);
+        btnToMorse = (Button) findViewById(R.id.translateToMorse2);
         back = (Button) findViewById(R.id.back);
+        translation = (TextView) findViewById(R.id.getTranslation2);
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,6 +49,7 @@ public class ToFlash extends AppCompatActivity {
                 backToMain();
             }
         });
+
 
         final boolean hasCameraFlash = getPackageManager().
                 hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
@@ -69,13 +74,23 @@ public class ToFlash extends AppCompatActivity {
             }
         });
 
+        btnToMorse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //
+                String toConvert = editText.getText().toString();
+                String afterConversion1 = MorseCode.alphaToMorse(toConvert);
+                translation.setText(afterConversion1);
+            }
+        });
+
 
         flashEnable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 textToConv = editText.getText().toString();
                 String morseString = MorseCode.alphaToMorse(textToConv);
-                translation = (TextView) findViewById(R.id.getTranslation2);
+
                 translation.setText(morseString);
 
                 System.out.println("String START:" + morseString + "ENDS");

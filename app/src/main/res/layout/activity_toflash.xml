@@ -26,18 +26,27 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
         android:ems="10"
-        android:inputType="textPersonName|textMultiLine"
+        android:inputType="textMultiLine"
 
         android:text="Enter your text here" />
 
     <Button
         android:id="@+id/button_on_off"
-        android:layout_width="149dp"
-        android:layout_height="75dp"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="175dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="195dp"
         android:text="To Flash" />
+
+    <Button
+        android:id="@+id/translateToMorse2"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_alignEnd="@+id/back"
+        android:layout_alignTop="@+id/button_on_off"
+        android:text="Translate to Morse" />
 
     <Button
         android:id="@+id/buttonCameraEnable"
@@ -45,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignTop="@+id/back"
-        android:layout_marginStart="18dp"
+        android:layout_marginStart="26dp"
         android:text="Allow Camera" />
 
     <TextView
