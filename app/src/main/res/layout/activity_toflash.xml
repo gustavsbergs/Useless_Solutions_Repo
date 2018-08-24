@@ -18,33 +18,47 @@
         android:text="Back" />
 
 
-
     <EditText
         android:id="@+id/enterText1"
-        android:layout_width="265dp"
-        android:layout_height="124dp"
+        android:layout_width="275dp"
+        android:layout_height="121dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="82dp"
+        android:layout_marginTop="35dp"
         android:ems="10"
         android:inputType="textPersonName|textMultiLine"
 
-        android:text="Enter your text here"/>
+        android:text="Enter your text here" />
 
-    <ToggleButton
+    <Button
         android:id="@+id/button_on_off"
-        android:layout_width="141dp"
-        android:layout_height="85dp"
-        android:layout_alignParentBottom="true"
+        android:layout_width="149dp"
+        android:layout_height="75dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="104dp"
-        android:text="ToggleButton" />
+        android:layout_marginTop="175dp"
+        android:text="To Flash" />
 
     <Button
         android:id="@+id/buttonCameraEnable"
-        android:layout_width="203dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/back"
+        android:layout_marginStart="18dp"
         android:text="Allow Camera" />
+
+    <TextView
+        android:id="@+id/getTranslation2"
+        android:layout_width="257dp"
+        android:layout_height="115dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="115dp"
+        android:ems="10"
+        android:gravity="top"
+        android:inputType="textMultiLine"
+        android:text=""
+        android:textSize="30dp" />
 
 </RelativeLayout>

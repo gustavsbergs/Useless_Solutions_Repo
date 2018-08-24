@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -27,6 +28,8 @@ public class ToFlash extends AppCompatActivity {
     private Button back;
     private EditText editText;
     private String textToConv;
+    private TextView translation;
+
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +57,7 @@ public class ToFlash extends AppCompatActivity {
         cameraEnable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ActivityCompat.requestPermissions(ToFlash.this, new String[] {Manifest.permission.CAMERA}, CAMERA_REQUEST);
+                ActivityCompat.requestPermissions(ToFlash.this, new String[]{Manifest.permission.CAMERA}, CAMERA_REQUEST);
             }
         });
 
@@ -70,55 +73,48 @@ public class ToFlash extends AppCompatActivity {
         flashEnable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               textToConv = editText.getText().toString();
-               String moreString = MorseCode.alphaToMorse(textToConv);
-                System.out.println("String START:"+ moreString +"ENDS");
-               // pass String to flashlight
-                for (int i = 0; i < moreString.length() ; i++) {
-                    char c = moreString.charAt(i);
-                    if (c == ' '){
-                        System.out.println("EMPTY");
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }else if (c == '.' ){
-                        System.out.println("DOT");
-                        try {
-                            Thread.sleep(1000);
-                            flashLightOn();
-                            Thread.sleep(1000);
-                            flashLightOff();
+                textToConv = editText.getText().toString();
+                String morseString = MorseCode.alphaToMorse(textToConv);
+                translation = (TextView) findViewById(R.id.getTranslation2);
+                translation.setText(morseString);
 
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }else if (c == '-'){
-                        System.out.println("DASH");
-                        try {
-                            Thread.sleep(1000);
-                            flashLightOn();
-                            Thread.sleep(3000);
-                            flashLightOff();
+                System.out.println("String START:" + morseString + "ENDS");
 
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
+                if (hasCameraFlash) {
+                    for (int i = 0; i < morseString.length(); i++) {
+                        char c = morseString.charAt(i);
+                        if (c == ' ') {
+                            System.out.println("EMPTY");
+                            try {
+                                Thread.sleep(400);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        } else if (c == '.') {
+                            System.out.println("DOT");
+                            try {
+                                Thread.sleep(400);
+                                flashLightOn();
+                                Thread.sleep(400);
+                                flashLightOff();
+
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        } else if (c == '-') {
+                            System.out.println("DASH");
+                            try {
+                                Thread.sleep(400);
+                                flashLightOn();
+                                Thread.sleep(1200);
+                                flashLightOff();
+
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
-
                 }
-
-                //
-//                if (hasCameraFlash) {
-//                    if (flashLightStatus)
-//                        flashLightOff();
-//                    else
-//                        flashLightOn();
-//                } else {
-//                    Toast.makeText(ToFlash.this, "No flash available on your device",
-//                            Toast.LENGTH_SHORT).show();
-//                }
             }
         });
     }
@@ -147,9 +143,9 @@ public class ToFlash extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch(requestCode) {
-            case CAMERA_REQUEST :
-                if (grantResults.length > 0  &&  grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        switch (requestCode) {
+            case CAMERA_REQUEST:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     cameraEnable.setEnabled(false);
                     cameraEnable.setText("Camera Enabled");
                     flashEnable.setEnabled(true);
@@ -159,7 +155,8 @@ public class ToFlash extends AppCompatActivity {
                 break;
         }
     }
-    public void backToMain(){
+
+    public void backToMain() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
