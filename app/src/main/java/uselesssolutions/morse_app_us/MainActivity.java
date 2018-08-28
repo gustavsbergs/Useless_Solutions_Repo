@@ -38,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
     public void thirdLook(){
         Intent intent = new Intent(this, ThirdLook.class);
         startActivity(intent);
@@ -48,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AboutMorse.class);
         startActivity(intent);
     }
-    // TO FLASH!
+
     public void toFlashLook(){
         Intent intent = new Intent(this, toMorseAllFunctions.class);
         startActivity(intent);

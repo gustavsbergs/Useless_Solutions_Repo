@@ -26,6 +26,7 @@ public class ThirdLook extends AppCompatActivity {
     private TextView letterText;
     private SoundPool shortPool;
     private SoundPool longPool;
+    private boolean runWhileTrue = true;
 
 
     @Override

@@ -32,6 +32,8 @@ public class toMorseAllFunctions extends AppCompatActivity {
     private Button btnToMorse;
     private Button vibrate;
     private String afterConversion1;
+    private String morseString;
+    private boolean runWhileTrue = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,43 +58,49 @@ public class toMorseAllFunctions extends AppCompatActivity {
         vibrate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                String morseCode = afterConversion1;
-                for (int i = 0; i < morseCode.length(); i++) {
-                    char ch = morseCode.charAt(i);
+                new Thread (new Runnable() {
+                    @Override
+                    public void run() {
+                        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                        String morseCode = afterConversion1;
+                        for (int i = 0; i < morseCode.length(); i++) {
+                            char ch = morseCode.charAt(i);
 
 
-                    if (ch == ' ') {
-                        try {
-                            Thread.sleep(600);
+                            if (ch == ' ' && runWhileTrue) {
+                                try {
+                                    Thread.sleep(600);
 
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
 
-                    } else if (ch == '.') {
-                        try {
-                            Thread.sleep(200);
-                            vibrator.vibrate(200);
-                            Thread.sleep(200);
-                            vibrator.cancel();
+                            } else if (ch == '.' && runWhileTrue) {
+                                try {
+                                    Thread.sleep(200);
+                                    vibrator.vibrate(200);
+                                    Thread.sleep(200);
+                                    vibrator.cancel();
 
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            else if (ch == '-' && runWhileTrue) {
+                                try {
+                                    Thread.sleep(200);
+                                    vibrator.vibrate(600);
+                                    Thread.sleep(600);
+                                    vibrator.cancel();
+
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
                         }
                     }
-                    else if (ch == '-') {
-                        try {
-                            Thread.sleep(200);
-                            vibrator.vibrate(600);
-                            Thread.sleep(600);
-                            vibrator.cancel();
+                }).start();
 
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
             }
         });
 
@@ -135,47 +143,51 @@ public class toMorseAllFunctions extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 textToConv = editText.getText().toString();
-                String morseString = MorseCode.alphaToMorse(textToConv);
+                morseString = MorseCode.alphaToMorse(textToConv);
 
-                translation.setText(morseString);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (hasCameraFlash) {
+                            for (int i = 0; i < morseString.length(); i++) {
+                                char c = morseString.charAt(i);
+                                if (c == ' ' && runWhileTrue) {
+                                    System.out.println("EMPTY");
+                                    try {
+                                        Thread.sleep(400);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                } else if (c == '.' && runWhileTrue) {
+                                    System.out.println("DOT");
+                                    try {
+                                        Thread.sleep(400);
+                                        flashLightOn();
+                                        Thread.sleep(400);
+                                        flashLightOff();
 
-                System.out.println("String START:" + morseString + "ENDS");
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                } else if (c == '-' && runWhileTrue) {
+                                    System.out.println("DASH");
+                                    try {
+                                        Thread.sleep(400);
+                                        flashLightOn();
+                                        Thread.sleep(1200);
+                                        flashLightOff();
 
-                if (hasCameraFlash) {
-                    for (int i = 0; i < morseString.length(); i++) {
-                        char c = morseString.charAt(i);
-                        if (c == ' ') {
-                            System.out.println("EMPTY");
-                            try {
-                                Thread.sleep(400);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        } else if (c == '.') {
-                            System.out.println("DOT");
-                            try {
-                                Thread.sleep(400);
-                                flashLightOn();
-                                Thread.sleep(400);
-                                flashLightOff();
-
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        } else if (c == '-') {
-                            System.out.println("DASH");
-                            try {
-                                Thread.sleep(400);
-                                flashLightOn();
-                                Thread.sleep(1200);
-                                flashLightOff();
-
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
                             }
                         }
                     }
-                }
+                }).start();
+                System.out.println("String START:" + morseString + "ENDS");
+
+
             }
         });
     }
@@ -220,6 +232,7 @@ public class toMorseAllFunctions extends AppCompatActivity {
     public void backToMain() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        runWhileTrue = false;
     }
 
 }
