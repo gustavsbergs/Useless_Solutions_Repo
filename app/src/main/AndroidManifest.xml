@@ -21,7 +21,6 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".SecondLook" />
         <activity android:name=".ThirdLook" />
         <activity android:name=".AboutMorse"></activity>
         <activity android:name=".toMorseAllFunctions"></activity>

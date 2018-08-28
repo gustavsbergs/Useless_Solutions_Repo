@@ -39,10 +39,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-//    public void secondLook(){
-//        Intent intent = new Intent(this, SecondLook.class);
-//        startActivity(intent);
-//    }
+
     public void thirdLook(){
         Intent intent = new Intent(this, ThirdLook.class);
         startActivity(intent);
