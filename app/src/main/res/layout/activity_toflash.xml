@@ -24,7 +24,7 @@
         android:layout_height="121dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="13dp"
         android:ems="10"
         android:inputType="textMultiLine"
 
@@ -32,42 +32,51 @@
 
     <Button
         android:id="@+id/button_on_off"
-        android:layout_width="150dp"
-        android:layout_height="60dp"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="195dp"
+        android:layout_marginBottom="80dp"
+        android:layout_marginStart="23dp"
         android:text="To Flash" />
 
     <Button
         android:id="@+id/translateToMorse2"
         android:layout_width="150dp"
         android:layout_height="60dp"
-        android:layout_alignEnd="@+id/back"
-        android:layout_alignTop="@+id/button_on_off"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="156dp"
         android:text="Translate to Morse" />
 
     <Button
         android:id="@+id/buttonCameraEnable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/back"
-        android:layout_marginStart="26dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/button_on_off"
+        android:layout_marginBottom="17dp"
         android:text="Allow Camera" />
 
     <TextView
         android:id="@+id/getTranslation2"
         android:layout_width="257dp"
-        android:layout_height="115dp"
+        android:layout_height="130dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="115dp"
+        android:layout_alignStart="@+id/enterText1"
+        android:layout_marginBottom="151dp"
         android:ems="10"
         android:gravity="top"
         android:inputType="textMultiLine"
         android:text=""
         android:textSize="30dp" />
+
+    <Button
+        android:id="@+id/vibrate"
+        android:layout_width="115dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/back"
+        android:layout_alignTop="@+id/button_on_off"
+        android:text="Vibrator" />
 
 </RelativeLayout>

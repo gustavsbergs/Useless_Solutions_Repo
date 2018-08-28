@@ -37,20 +37,12 @@ public class MainActivity extends AppCompatActivity {
                 aboutMorseCode();
             }
         });
-        //TO FLASH!! delete later
-//        moreToFlash = (Button) findViewById(R.id.moreToFlash);
-//        moreToFlash.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                toFlashLook();
-//            }
-//        });
     }
 
-    public void secondLook(){
-        Intent intent = new Intent(this, SecondLook.class);
-        startActivity(intent);
-    }
+//    public void secondLook(){
+//        Intent intent = new Intent(this, SecondLook.class);
+//        startActivity(intent);
+//    }
     public void thirdLook(){
         Intent intent = new Intent(this, ThirdLook.class);
         startActivity(intent);
@@ -61,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     }
     // TO FLASH!
     public void toFlashLook(){
-        Intent intent = new Intent(this, ToFlash.class);
+        Intent intent = new Intent(this, toMorseAllFunctions.class);
         startActivity(intent);
     }
 

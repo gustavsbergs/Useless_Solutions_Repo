@@ -7,11 +7,11 @@ import android.content.pm.PackageManager;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class ToFlash extends AppCompatActivity {
+public class toMorseAllFunctions extends AppCompatActivity {
 
     private Button cameraEnable;
     private Button flashEnable;
@@ -30,9 +30,10 @@ public class ToFlash extends AppCompatActivity {
     private String textToConv;
     private TextView translation;
     private Button btnToMorse;
+    private Button vibrate;
+    private String afterConversion1;
 
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toflash);
@@ -42,6 +43,7 @@ public class ToFlash extends AppCompatActivity {
         back = (Button) findViewById(R.id.back);
         translation = (TextView) findViewById(R.id.getTranslation2);
 
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,6 +52,49 @@ public class ToFlash extends AppCompatActivity {
             }
         });
 
+        vibrate = (Button) findViewById(R.id.vibrate);
+        vibrate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                String morseCode = afterConversion1;
+                for (int i = 0; i < morseCode.length(); i++) {
+                    char ch = morseCode.charAt(i);
+
+
+                    if (ch == ' ') {
+                        try {
+                            Thread.sleep(600);
+
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                    } else if (ch == '.') {
+                        try {
+                            Thread.sleep(200);
+                            vibrator.vibrate(200);
+                            Thread.sleep(200);
+                            vibrator.cancel();
+
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else if (ch == '-') {
+                        try {
+                            Thread.sleep(200);
+                            vibrator.vibrate(600);
+                            Thread.sleep(600);
+                            vibrator.cancel();
+
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        });
 
         final boolean hasCameraFlash = getPackageManager().
                 hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
@@ -62,7 +107,7 @@ public class ToFlash extends AppCompatActivity {
         cameraEnable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ActivityCompat.requestPermissions(ToFlash.this, new String[]{Manifest.permission.CAMERA}, CAMERA_REQUEST);
+                ActivityCompat.requestPermissions(toMorseAllFunctions.this, new String[]{Manifest.permission.CAMERA}, CAMERA_REQUEST);
             }
         });
 
@@ -79,10 +124,11 @@ public class ToFlash extends AppCompatActivity {
             public void onClick(View view) {
                 //
                 String toConvert = editText.getText().toString();
-                String afterConversion1 = MorseCode.alphaToMorse(toConvert);
+                afterConversion1 = MorseCode.alphaToMorse(toConvert);
                 translation.setText(afterConversion1);
             }
         });
+
 
 
         flashEnable.setOnClickListener(new View.OnClickListener() {
@@ -165,7 +211,7 @@ public class ToFlash extends AppCompatActivity {
                     cameraEnable.setText("Camera Enabled");
                     flashEnable.setEnabled(true);
                 } else {
-                    Toast.makeText(ToFlash.this, "Permission Denied for the Camera", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(toMorseAllFunctions.this, "Permission Denied for the Camera", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
