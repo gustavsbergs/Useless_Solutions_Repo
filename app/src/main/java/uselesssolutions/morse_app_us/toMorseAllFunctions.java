@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.annotation.NonNull;
@@ -24,7 +25,6 @@ public class toMorseAllFunctions extends AppCompatActivity {
     private Button cameraEnable;
     private Button flashEnable;
     private static final int CAMERA_REQUEST = 50;
-    //private boolean flashLightStatus = false;
     private Button back;
     private EditText editText;
     private String textToConv;
@@ -44,7 +44,10 @@ public class toMorseAllFunctions extends AppCompatActivity {
         btnToMorse = (Button) findViewById(R.id.translateToMorse2);
         back = (Button) findViewById(R.id.back);
         translation = (TextView) findViewById(R.id.getTranslation2);
-
+        editText = (EditText) findViewById(R.id.enterText1);
+        String charSequence = "";
+        editText.setText(charSequence);
+        
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,13 +61,14 @@ public class toMorseAllFunctions extends AppCompatActivity {
         vibrate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                textToConv = editText.getText().toString();
+                morseString = MorseCode.alphaToMorse(textToConv);
                 new Thread (new Runnable() {
                     @Override
                     public void run() {
                         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                        String morseCode = afterConversion1;
-                        for (int i = 0; i < morseCode.length(); i++) {
-                            char ch = morseCode.charAt(i);
+                        for (int i = 0; i < morseString.length(); i++) {
+                            char ch = morseString.charAt(i);
                             if (ch == ' ' && runWhileTrue) {
                                 try {
                                     Thread.sleep(200);
@@ -104,6 +108,63 @@ public class toMorseAllFunctions extends AppCompatActivity {
             }
         });
 
+        final Button morsesound = (Button)this.findViewById(R.id.morse_sound);
+        final MediaPlayer longbe = MediaPlayer.create(this, R.raw.longbeep);
+        final MediaPlayer shortbe = MediaPlayer.create(this, R.raw.shortbeep);
+        //final ToneGenerator ob = new ToneGenerator();
+        //final ToneGenerator op = new ToneGenerator();
+        //final AudioTrack shortBeep = ob.generateTone(720, 500);
+        //final AudioTrack longBeep = op.generateTone(720, 1500);
+        morsesound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread (new Runnable() {
+                    @Override
+                    public void run() {
+                        String morseCode = afterConversion1;
+                        for (int i = 0; i < morseCode.length(); i++) {
+                            char ch = morseCode.charAt(i);
+                            if (ch == ' ' && runWhileTrue) {
+                                try {
+                                    Thread.sleep(300);
+                                    System.out.println("EMPTY");
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+
+                            } else if (ch == '.' && runWhileTrue) {
+                                try {
+                                    //Thread.sleep(200);
+                                    System.out.println("DOT");
+                                    //shortBeep.play();
+                                    shortbe.start();
+                                    Thread.sleep(300);
+
+
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            else if (ch == '-' && runWhileTrue) {
+                                try {
+                                    //Thread.sleep(200);
+                                    System.out.println("DASH");
+                                    //longBeep.play();
+                                    longbe.start();
+                                    Thread.sleep(900);
+
+
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                    }
+                }).start();
+
+            }
+        });
+
         final boolean hasCameraFlash = getPackageManager().
                 hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
         boolean isEnabled = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
@@ -119,7 +180,7 @@ public class toMorseAllFunctions extends AppCompatActivity {
             }
         });
 
-        editText = (EditText) findViewById(R.id.enterText1);
+
         editText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -198,7 +259,6 @@ public class toMorseAllFunctions extends AppCompatActivity {
         try {
             String cameraId = cameraManager.getCameraIdList()[0];
             cameraManager.setTorchMode(cameraId, true);
-            //flashLightStatus = true;
         } catch (CameraAccessException e) {
         }
     }
@@ -209,7 +269,6 @@ public class toMorseAllFunctions extends AppCompatActivity {
         try {
             String cameraId = cameraManager.getCameraIdList()[0];
             cameraManager.setTorchMode(cameraId, false);
-            //flashLightStatus = false;
         } catch (CameraAccessException e) {
         }
     }
