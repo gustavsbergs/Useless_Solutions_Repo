@@ -253,7 +253,7 @@ public class toMorseAllFunctions extends AppCompatActivity {
         });
     }
 
-    public void flashLightOn() {
+    private void flashLightOn() {
         CameraManager cameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
 
         try {
@@ -263,7 +263,7 @@ public class toMorseAllFunctions extends AppCompatActivity {
         }
     }
 
-    public void flashLightOff() {
+    private void flashLightOff() {
         CameraManager cameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
 
         try {
@@ -288,7 +288,7 @@ public class toMorseAllFunctions extends AppCompatActivity {
         }
     }
 
-    public void backToMain() {
+    private void backToMain() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         runWhileTrue = false;
