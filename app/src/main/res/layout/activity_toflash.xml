@@ -11,8 +11,10 @@
         android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/buttonCameraEnable"
-        android:layout_toEndOf="@+id/translateToMorse2"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="18dp"
+        android:layout_marginEnd="25dp"
         android:text="Back" />
 
 
@@ -47,15 +49,6 @@
         android:layout_marginTop="156dp"
         android:text="Translate to Morse" />
 
-    <Button
-        android:id="@+id/buttonCameraEnable"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/button_on_off"
-        android:layout_marginBottom="17dp"
-        android:text="Allow Camera" />
-
     <TextView
         android:id="@+id/getTranslation2"
         android:layout_width="257dp"
@@ -79,10 +72,11 @@
 
     <Button
         android:id="@+id/morse_sound"
-        android:layout_width="100dp"
+        android:layout_width="129dp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/buttonCameraEnable"
-        android:layout_toStartOf="@+id/back"
+        android:layout_alignStart="@+id/button_on_off"
+        android:layout_alignTop="@+id/back"
+        android:layout_marginTop="0dp"
         android:text="To Sound" />
 
 </RelativeLayout>

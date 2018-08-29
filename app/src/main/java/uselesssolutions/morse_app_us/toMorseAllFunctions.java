@@ -22,7 +22,6 @@ import android.widget.Toast;
 
 public class toMorseAllFunctions extends AppCompatActivity {
 
-    private Button cameraEnable;
     private Button flashEnable;
     private static final int CAMERA_REQUEST = 50;
     private Button back;
@@ -40,7 +39,6 @@ public class toMorseAllFunctions extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toflash);
         flashEnable = (Button) findViewById(R.id.button_on_off);
-        cameraEnable = (Button) findViewById(R.id.buttonCameraEnable);
         btnToMorse = (Button) findViewById(R.id.translateToMorse2);
         back = (Button) findViewById(R.id.back);
         translation = (TextView) findViewById(R.id.getTranslation2);
@@ -167,19 +165,6 @@ public class toMorseAllFunctions extends AppCompatActivity {
 
         final boolean hasCameraFlash = getPackageManager().
                 hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
-        boolean isEnabled = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-                == PackageManager.PERMISSION_GRANTED;
-
-        cameraEnable.setEnabled(!isEnabled);
-        flashEnable.setEnabled(isEnabled);
-
-        cameraEnable.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ActivityCompat.requestPermissions(toMorseAllFunctions.this, new String[]{Manifest.permission.CAMERA}, CAMERA_REQUEST);
-            }
-        });
-
 
         editText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,18 +176,16 @@ public class toMorseAllFunctions extends AppCompatActivity {
         btnToMorse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //
+
                 String toConvert = editText.getText().toString();
                 afterConversion1 = MorseCode.alphaToMorse(toConvert);
                 translation.setText(afterConversion1);
             }
         });
-
-
-
         flashEnable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 textToConv = editText.getText().toString();
                 morseString = MorseCode.alphaToMorse(textToConv);
                 System.out.println("String START:" + morseString + "ENDS");
@@ -246,9 +229,6 @@ public class toMorseAllFunctions extends AppCompatActivity {
                         }
                     }
                 }).start();
-
-
-
             }
         });
     }
@@ -270,21 +250,6 @@ public class toMorseAllFunctions extends AppCompatActivity {
             String cameraId = cameraManager.getCameraIdList()[0];
             cameraManager.setTorchMode(cameraId, false);
         } catch (CameraAccessException e) {
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case CAMERA_REQUEST:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    cameraEnable.setEnabled(false);
-                    cameraEnable.setText("Camera Enabled");
-                    flashEnable.setEnabled(true);
-                } else {
-                    Toast.makeText(toMorseAllFunctions.this, "Permission Denied for the Camera", Toast.LENGTH_SHORT).show();
-                }
-                break;
         }
     }
 
