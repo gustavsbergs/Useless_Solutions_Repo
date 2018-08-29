@@ -47,7 +47,7 @@
         android:layout_below="@+id/textViewa1"
         android:layout_centerHorizontal="true"
         android:padding="10dp"
-        android:text="Developed by Emīls Lapiņš, Krišjānis Rāvietis, Niklāvs Kālbergs, Gustavs Bergs, Ņikita Jegorovs ... . "
+        android:text="Developed by Emīls Lapiņš, Krišjānis Rāvietis, Niklāvs Kālbergs, Gustavs Bergs, Ņikita Jegorovs. "
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
