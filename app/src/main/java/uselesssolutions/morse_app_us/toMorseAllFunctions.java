@@ -24,7 +24,7 @@ public class toMorseAllFunctions extends AppCompatActivity {
     private Button cameraEnable;
     private Button flashEnable;
     private static final int CAMERA_REQUEST = 50;
-    private boolean flashLightStatus = false;
+    //private boolean flashLightStatus = false;
     private Button back;
     private EditText editText;
     private String textToConv;
@@ -65,8 +65,6 @@ public class toMorseAllFunctions extends AppCompatActivity {
                         String morseCode = afterConversion1;
                         for (int i = 0; i < morseCode.length(); i++) {
                             char ch = morseCode.charAt(i);
-
-
                             if (ch == ' ' && runWhileTrue) {
                                 try {
                                     Thread.sleep(200);
@@ -200,7 +198,7 @@ public class toMorseAllFunctions extends AppCompatActivity {
         try {
             String cameraId = cameraManager.getCameraIdList()[0];
             cameraManager.setTorchMode(cameraId, true);
-            flashLightStatus = true;
+            //flashLightStatus = true;
         } catch (CameraAccessException e) {
         }
     }
@@ -211,7 +209,7 @@ public class toMorseAllFunctions extends AppCompatActivity {
         try {
             String cameraId = cameraManager.getCameraIdList()[0];
             cameraManager.setTorchMode(cameraId, false);
-            flashLightStatus = false;
+            //flashLightStatus = false;
         } catch (CameraAccessException e) {
         }
     }
