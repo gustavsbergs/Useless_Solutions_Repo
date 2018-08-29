@@ -257,6 +257,15 @@ public class toMorseAllFunctions extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         runWhileTrue = false;
+        finishAndRemoveTask();
     }
 
+    //Hardware button "back"
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        runWhileTrue = false;
+        finishAndRemoveTask();
+    }
 }

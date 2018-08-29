@@ -170,5 +170,11 @@ public class ThirdLook extends AppCompatActivity {
     public void backToMain(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        finishAndRemoveTask();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
