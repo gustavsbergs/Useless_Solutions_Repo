@@ -10,6 +10,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -39,6 +40,7 @@ public class toMorseAllFunctions extends AppCompatActivity {
         btnToMorse = (Button) findViewById(R.id.translateToMorse2);
         back = (Button) findViewById(R.id.back);
         translation = (TextView) findViewById(R.id.getTranslation2);
+        translation.setMovementMethod(new ScrollingMovementMethod());
         editText = (EditText) findViewById(R.id.enterText1);
         String charSequence = "";
         editText.setText(charSequence);
