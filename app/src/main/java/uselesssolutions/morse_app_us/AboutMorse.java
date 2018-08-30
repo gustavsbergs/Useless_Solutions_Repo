@@ -19,7 +19,6 @@ public class AboutMorse extends AppCompatActivity {
         back2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 backToMain2();
             }
         });
@@ -28,7 +27,6 @@ public class AboutMorse extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         AboutMorse.super.onBackPressed();
-
     }
 
     @Override
@@ -36,6 +34,5 @@ public class AboutMorse extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         AboutMorse.super.onBackPressed();
-
     }
 }
