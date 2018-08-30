@@ -27,13 +27,15 @@ public class AboutMorse extends AppCompatActivity {
     private void backToMain2(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-        finish();
+        AboutMorse.super.onBackPressed();
+
     }
 
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-        finish();
+        AboutMorse.super.onBackPressed();
+
     }
 }

@@ -257,7 +257,7 @@ public class toMorseAllFunctions extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         runWhileTrue = false;
-        finish();
+        toMorseAllFunctions.super.onBackPressed();
     }
 
     //Hardware button "back"
@@ -266,6 +266,6 @@ public class toMorseAllFunctions extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         runWhileTrue = false;
-        finish();
+        toMorseAllFunctions.super.onBackPressed();
     }
 }
