@@ -1,6 +1,6 @@
 package uselesssolutions.morse_app_us;
 
-import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -9,15 +9,12 @@ import android.hardware.camera2.CameraManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class toMorseAllFunctions extends AppCompatActivity {
@@ -38,7 +35,7 @@ public class toMorseAllFunctions extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_toflash);
-        flashEnable = (Button) findViewById(R.id.button_on_off);
+        flashEnable = (Button) findViewById(R.id.buttononoff);
         btnToMorse = (Button) findViewById(R.id.translateToMorse2);
         back = (Button) findViewById(R.id.back);
         translation = (TextView) findViewById(R.id.getTranslation2);
@@ -178,6 +175,7 @@ public class toMorseAllFunctions extends AppCompatActivity {
             public void onClick(View view) {
 
                 String toConvert = editText.getText().toString();
+                hideKeyboardFrom(getApplicationContext(), view);
                 afterConversion1 = MorseCode.alphaToMorse(toConvert);
                 translation.setText(afterConversion1);
             }
@@ -267,5 +265,10 @@ public class toMorseAllFunctions extends AppCompatActivity {
         startActivity(intent);
         runWhileTrue = false;
         toMorseAllFunctions.super.onBackPressed();
+    }
+
+    public static void hideKeyboardFrom(Context context, View view) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }

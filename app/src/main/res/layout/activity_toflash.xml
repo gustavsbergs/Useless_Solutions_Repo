@@ -28,10 +28,10 @@
         android:ems="10"
         android:inputType="textMultiLine"
 
-        android:text="Enter your text here" />
+         />
 
     <Button
-        android:id="@+id/button_on_off"
+        android:id="@+id/buttononoff"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -67,14 +67,14 @@
         android:layout_width="115dp"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/back"
-        android:layout_alignTop="@+id/button_on_off"
+        android:layout_alignTop="@+id/buttononoff"
         android:text="Vibrator" />
 
     <Button
         android:id="@+id/morse_sound"
         android:layout_width="129dp"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/button_on_off"
+        android:layout_alignStart="@+id/buttononoff"
         android:layout_alignTop="@+id/back"
         android:layout_marginTop="0dp"
         android:text="To Sound" />
