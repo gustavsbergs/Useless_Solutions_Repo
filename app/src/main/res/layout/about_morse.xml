@@ -9,13 +9,16 @@
 
     <TextView
         android:id="@+id/aboutMorse"
-        android:layout_width="298dp"
-        android:layout_height="441dp"
-        android:layout_alignParentEnd="true"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         android:layout_alignParentTop="true"
-        android:layout_marginEnd="26dp"
-        android:layout_marginTop="35dp"
-        android:text="Morse code is a method of transmitting text information as a series of on-off tones, lights, or clicks that can be directly understood by a skilled listener or observer without special equipment. It is named for Samuel F. B. Morse, an inventor of the telegraph." />
+        android:layout_centerHorizontal="true"
+        android:autoLink="all"
+        android:linksClickable="true"
+        android:padding="10dp"
+        android:text="Morse code is a method of transmitting text information as a series of on-off tones, lights, or clicks that can be directly understood by a skilled listener or observer without special equipment. It is named for Samuel F. B. Morse, an inventor of the telegraph. For more info see: https://en.wikipedia.org/wiki/Morse_code"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:visibility="visible" />
 
     <Button
         android:id="@+id/back2"
@@ -25,4 +28,38 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="16dp"
         android:text="Back" />
+
+    <TextView
+        android:id="@+id/textViewa1"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@+id/aboutMorse"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-30dp"
+        android:padding="10dp"
+        android:text="This project was developed as part of Accenture Java Bootcamp 2018. "
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    <TextView
+        android:id="@+id/textViewa2"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@+id/textViewa1"
+        android:layout_centerHorizontal="true"
+        android:padding="10dp"
+        android:text="Developed by Emīls Lapiņš, Krišjānis Rāvietis, Niklāvs Kālbergs, Gustavs Bergs, Ņikita Jegorovs. "
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    <TextView
+        android:id="@+id/textViewa3"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_above="@+id/back2"
+        android:layout_alignParentStart="true"
+        android:autoLink="all"
+        android:linksClickable="true"
+        android:padding="10dp"
+        android:text="Licensed under the Unlicense, for more information see: http://unlicense.org/"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
 </RelativeLayout>

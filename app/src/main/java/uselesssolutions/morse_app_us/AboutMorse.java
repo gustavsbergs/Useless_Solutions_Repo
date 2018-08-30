@@ -24,8 +24,18 @@ public class AboutMorse extends AppCompatActivity {
             }
         });
     }
-    public void backToMain2(){
+    private void backToMain2(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        AboutMorse.super.onBackPressed();
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        AboutMorse.super.onBackPressed();
+
     }
 }

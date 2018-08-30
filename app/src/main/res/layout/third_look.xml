@@ -11,69 +11,81 @@
         android:id="@+id/back1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="24dp"
-        android:layout_marginEnd="19dp"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignEnd="@+id/morseCode"
         android:text="Back" />
 
-    <EditText
-        android:id="@+id/enterMorse"
-        android:layout_width="265dp"
-        android:layout_height="124dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="41dp"
-        android:ems="10"
-        android:inputType="textPersonName|textMultiLine"
-
-        android:text="Enter your morse code here" />
-
-    <EditText
-        android:id="@+id/getTranslation"
-        android:layout_width="257dp"
-        android:layout_height="115dp"
-        android:layout_above="@+id/back1"
-        android:layout_centerHorizontal="true"
-        android:ems="10"
-        android:gravity="top"
-        android:inputType="textPersonName"
-        android:text="Translation" />
-
-    <Button
-        android:id="@+id/dot"
-        android:layout_width="102dp"
-        android:layout_height="37dp"
+    <TextView
+        android:id="@+id/morseCode"
+        android:layout_width="389dp"
+        android:layout_height="112dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="203dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="19dp"
+        android:background="#ebf442"
+        android:text="Morse Code To Text"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="268dp"
+        android:layout_height="89dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/morseCode"
+        android:layout_marginBottom="30dp"
+        android:text="Translation"
+        android:textSize="24sp"
+        android:background="#ebf442"/>
+
+    <Button
+        android:id="@+id/shortButton"
+        android:layout_width="145dp"
+        android:layout_height="74dp"
+        android:layout_above="@+id/letterSpaceBtn"
+        android:layout_alignStart="@+id/morseCode"
         android:text="." />
 
     <Button
-        android:id="@+id/line"
-        android:layout_width="102dp"
-        android:layout_height="37dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/dot"
-        android:layout_marginTop="251dp"
-        android:text="-" />
+        android:id="@+id/longButton"
+        android:layout_width="147dp"
+        android:layout_height="73dp"
+        android:layout_alignTop="@+id/shortButton"
+        android:layout_toEndOf="@+id/shortButton"
+        android:text="--" />
 
     <Button
-        android:id="@+id/space"
-        android:layout_width="102dp"
-        android:layout_height="37dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/dot"
-        android:layout_marginBottom="229dp"
-        android:text="space" />
+        android:id="@+id/wordSpaceBtn"
+        android:layout_width="147dp"
+        android:layout_height="61dp"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/shortButton"
+        android:text="Word space" />
 
     <Button
-        android:id="@+id/translateToText"
-        android:layout_width="125dp"
-        android:layout_height="89dp"
-        android:layout_alignEnd="@+id/enterMorse"
-        android:layout_alignTop="@+id/dot"
+        android:id="@+id/letterSpaceBtn"
+        android:layout_width="146dp"
+        android:layout_height="58dp"
+        android:layout_alignStart="@+id/morseCode"
+        android:layout_centerVertical="true"
+        android:text="Letter space" />
+
+    <Button
+        android:id="@+id/convertButton"
+        android:layout_width="381dp"
+        android:layout_height="91dp"
+        android:layout_alignStart="@+id/morseCode"
+        android:layout_below="@+id/wordSpaceBtn"
         android:text="Translate" />
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="131dp"
+        android:layout_alignTop="@+id/shortButton"
+        android:layout_marginStart="0dp"
+        android:layout_toEndOf="@+id/longButton"
+        android:text="Delete" />
 
 </RelativeLayout>
