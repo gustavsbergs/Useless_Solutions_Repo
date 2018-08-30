@@ -69,3 +69,7 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
+app/release/output.json
+app/debug/output.json
+.idea/modules.xml
+.idea/modules.xml

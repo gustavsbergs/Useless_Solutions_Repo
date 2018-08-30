@@ -51,17 +51,21 @@
 
     <TextView
         android:id="@+id/getTranslation2"
-        android:layout_width="283dp"
+        android:layout_width="332dp"
         android:layout_height="130dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/enterText1"
-        android:layout_marginBottom="151dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="148dp"
         android:ems="10"
         android:gravity="top"
         android:inputType="textMultiLine"
         android:scrollbars="vertical"
         android:text=""
-        android:textSize="30dp" />
+        android:textAlignment="textStart"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/vibrate"
