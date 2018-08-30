@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/vibrator"
+        android:title="vibrator"
+        android:icon="@mipmap/vibrator"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/flash"
+        android:title="flash"
+        android:icon="@mipmap/flash"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/sound"
+        android:title="sound"
+        android:icon="@mipmap/sound"
+        app:showAsAction="always"/>
+
+</menu>

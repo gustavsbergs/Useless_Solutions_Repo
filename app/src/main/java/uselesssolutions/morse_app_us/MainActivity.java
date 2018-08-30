@@ -12,6 +12,17 @@ public class MainActivity extends AppCompatActivity {
     private Button morseToText;
     private Button aboutMorse;
 
+    // USED IN MORSE TO TEXT ACTIVITY TO TURN ON OR OFF SOUND PLAYBACK
+    public boolean playbackNeeded = false;
+    public void setPlaybackNeeded(boolean newValue){
+        playbackNeeded = newValue;
+    }
+    public boolean getPlaybackNeeded(){
+        boolean value = playbackNeeded;
+        return value;
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,19 +51,16 @@ public class MainActivity extends AppCompatActivity {
     private void thirdLook(){
         Intent intent = new Intent(this, ThirdLook.class);
         startActivity(intent);
-        finish();
 
     }
     private void aboutMorseCode(){
         Intent intent = new Intent(this, AboutMorse.class);
         startActivity(intent);
-        finish();
     }
 
     private void toFlashLook(){
         Intent intent = new Intent(this, toMorseAllFunctions.class);
         startActivity(intent);
-        finish();
     }
 
 

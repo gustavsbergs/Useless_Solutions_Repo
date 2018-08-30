@@ -5,16 +5,19 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ThirdLook extends AppCompatActivity {
-
-
-    private Button back1;
     // NIKLAVS ADDED THIS:
+
+    Toolbar toolbar;
     String morseForMethod = "";
     private Button wordSpaceBtn;
     private Button letterSpaceBtn;
@@ -26,20 +29,49 @@ public class ThirdLook extends AppCompatActivity {
     private TextView letterText;
     private SoundPool shortPool;
     private SoundPool longPool;
-    private boolean runWhileTrue = true;
+    private boolean threadNeeded = true; // USED TO STOP THE THREAD AFTER BACK BUTTON IS PRESSED
+    MainActivity ma = new MainActivity();
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.audio:
+                if (ma.getPlaybackNeeded() == true){
+                    ma.setPlaybackNeeded(false);
+                    Toast.makeText(this, "Audio playback off", Toast.LENGTH_SHORT).show();
+                }else{
+                    ma.setPlaybackNeeded(true);
+                    Toast.makeText(this, "Audio playback on", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.dictionary:
+                startActivity(new Intent(ThirdLook.this,Pop.class));
+
+                break;
+            default: System.out.println("ACTION NOT ASSIGNED");
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.third_look);
-        back1 = (Button) findViewById(R.id.back1);
-        back1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                backToMain();
-            }
-        });
+
+        toolbar = findViewById(R.id.my_toolbar);
+        // setSupportActionBar(toolbar);
+        if (toolbar != null)
+            toolbar.setTitle("Morse to Text");
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // NIKLAVS ADDED THIS:
         shortPool = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
@@ -47,7 +79,6 @@ public class ThirdLook extends AppCompatActivity {
 
         longPool = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
         final int longID = longPool.load(this, R.raw.longbeep, 1);
-
 
         morseText = findViewById(R.id.morseCode);
         letterText = findViewById(R.id.textView2);
@@ -103,6 +134,7 @@ public class ThirdLook extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
+                        threadNeeded = false;
                         longPool.play(longID, 2, 2, 0, 0, 0);
                     }
                 }).start();
@@ -118,6 +150,7 @@ public class ThirdLook extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
+                        threadNeeded = false;
                         shortPool.play(shortID, 2, 2, 0, 0, 0);
                     }
                 }).start();
@@ -130,6 +163,7 @@ public class ThirdLook extends AppCompatActivity {
         convertBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                threadNeeded = true;
                 MorseTextClass summon = new MorseTextClass();
                 if(morseForMethod.length() > 0) {
                     if (morseForMethod.charAt(morseForMethod.length()-1) != '/'){
@@ -138,8 +172,45 @@ public class ThirdLook extends AppCompatActivity {
                     morseText.setText(makeDisplayString(morseForMethod));
                     letterText.setText(summon.morseToText(morseForMethod));
                 }
+                if (ma.getPlaybackNeeded() == true){
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            for (int i = 0; i < morseForMethod.length(); i++){
+                                if (morseForMethod.charAt(i) == '.' && threadNeeded){
+                                    shortPool.play(shortID, 2, 2, 0, 0, 0);
+                                    try{
+                                        Thread.sleep(200);
+                                    }catch (Exception e){}
+                                }else if (morseForMethod.charAt(i) == '-' && threadNeeded){
+                                    longPool.play(longID, 2, 2, 0, 0, 0);
+                                    try{
+                                        Thread.sleep(200);
+                                    }catch (Exception e){}
+                                }else if (morseForMethod.charAt(i) == '/' && threadNeeded){
+                                    try{
+                                        Thread.sleep(600);
+                                    }catch (Exception e){}
+                                }else if (morseForMethod.charAt(i) == '%' && threadNeeded){
+                                    try{
+                                        Thread.sleep(1000);
+                                    }catch (Exception e){}
+                                }else{
+                                    System.out.println("no good");
+                                }
+                            }
+                        }
+                    }).start();
+                }
             }
         });
+    }
+
+    @Override
+    protected void onStop() {
+        // call the superclass method first
+        super.onStop();
+        threadNeeded = false;
     }
 
     public String deleteForMethod(String str){
@@ -168,16 +239,9 @@ public class ThirdLook extends AppCompatActivity {
     }
 
     public void backToMain(){
+        threadNeeded = false;
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-        ThirdLook.super.onBackPressed();
-    }
-
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        ThirdLook.super.onBackPressed();
-
+        finish();
     }
 }

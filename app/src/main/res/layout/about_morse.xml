@@ -1,65 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_green_light"
-    tools:context=".AboutMorse">
+    tools:context=".AboutMorse"
+    android:id="@+id/relativeLayout">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#e69536cc"
+        android:elevation="6dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:titleTextColor="#ffffff"/>
 
     <TextView
         android:id="@+id/aboutMorse"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
+        android:layout_width="384dp"
+        android:layout_height="148dp"
+        android:layout_marginTop="18dp"
         android:autoLink="all"
         android:linksClickable="true"
         android:padding="10dp"
         android:text="Morse code is a method of transmitting text information as a series of on-off tones, lights, or clicks that can be directly understood by a skilled listener or observer without special equipment. It is named for Samuel F. B. Morse, an inventor of the telegraph. For more info see: https://en.wikipedia.org/wiki/Morse_code"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:visibility="visible" />
-
-    <Button
-        android:id="@+id/back2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/aboutMorse"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="16dp"
-        android:text="Back" />
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
 
     <TextView
         android:id="@+id/textViewa1"
-        android:layout_width="match_parent"
+        android:layout_width="384dp"
         android:layout_height="80dp"
-        android:layout_below="@+id/aboutMorse"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="-30dp"
+        android:layout_marginTop="10dp"
         android:padding="10dp"
         android:text="This project was developed as part of Accenture Java Bootcamp 2018. "
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aboutMorse" />
 
     <TextView
         android:id="@+id/textViewa2"
-        android:layout_width="match_parent"
+        android:layout_width="384dp"
         android:layout_height="80dp"
-        android:layout_below="@+id/textViewa1"
-        android:layout_centerHorizontal="true"
         android:padding="10dp"
         android:text="Developed by Emīls Lapiņš, Krišjānis Rāvietis, Niklāvs Kālbergs, Gustavs Bergs, Ņikita Jegorovs. "
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewa1" />
 
     <TextView
         android:id="@+id/textViewa3"
-        android:layout_width="match_parent"
+        android:layout_width="384dp"
         android:layout_height="72dp"
-        android:layout_above="@+id/back2"
-        android:layout_alignParentStart="true"
+        android:layout_marginTop="39dp"
         android:autoLink="all"
         android:linksClickable="true"
         android:padding="10dp"
         android:text="Licensed under the Unlicense, for more information see: http://unlicense.org/"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewa2" />
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

@@ -21,9 +21,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ThirdLook" android:screenOrientation="portrait"/>
-        <activity android:name=".AboutMorse" android:screenOrientation="portrait"/>
-        <activity android:name=".toMorseAllFunctions" android:screenOrientation="portrait"  android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".ThirdLook" android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".AboutMorse" android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".toMorseAllFunctions" android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".Pop"
+            android:theme="@style/AppTheme.Popup"/>
     </application>
 
 </manifest>
