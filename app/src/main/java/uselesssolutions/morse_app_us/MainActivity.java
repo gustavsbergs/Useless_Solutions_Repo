@@ -40,15 +40,19 @@ public class MainActivity extends AppCompatActivity {
     private void thirdLook(){
         Intent intent = new Intent(this, ThirdLook.class);
         startActivity(intent);
+        finish();
+
     }
     private void aboutMorseCode(){
         Intent intent = new Intent(this, AboutMorse.class);
         startActivity(intent);
+        finish();
     }
 
     private void toFlashLook(){
         Intent intent = new Intent(this, toMorseAllFunctions.class);
         startActivity(intent);
+        finish();
     }
 
 
