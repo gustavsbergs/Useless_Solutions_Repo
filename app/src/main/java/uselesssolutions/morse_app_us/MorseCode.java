@@ -23,7 +23,7 @@ public class MorseCode {
 
     public static String alphaToMorse(String englishCode) {
         StringBuilder builder = new StringBuilder();
-        String[] words = englishCode.replaceAll("[^a-zA-z+0-9+!,?.' ]", "").trim().split(" ");
+        String[] words = englishCode.replaceAll("[^a-zA-Z+0-9+!,?.' ]", "").trim().split(" ");
         System.out.println(words);
         for (String word : words) {
             for (int i = 0; i < word.length(); i++) {
